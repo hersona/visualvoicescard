@@ -1,12 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from '../views/BaseDS/Home';
+/* import Home from '../views/BaseDS/Home'; */
 import Results from '../views/Results';
 import Detail from '../views/Detail';
 import Survey from "../views/Survey";
 import SurveyDemographic from "../views/SurveyDemographic";
 import SurveyQuestions from "../views/SurveyQuestions";
-import Thanks from '../views/Thanks';
+
+
+import Welcome from '../views/Welcome';
+import Home from '../views/Home';
+import InfoKits from '../views/InfoKits';
 
 
 
@@ -19,7 +23,10 @@ const RoutesComponent = () => (
    <Route path="/survey/:surveyId" element={<Survey />} />
    <Route path="/survey/:surveyId/demographic" element={<SurveyDemographic />} />
    <Route path="/survey/:surveyId/questions" element={<SurveyQuestions />} />
-   <Route path="/survey/:surveyId/thanks" element={<Thanks />} />
+
+   <Route path="/welcome" element={<Welcome />} />
+   <Route path="/home" element={<Home />} />
+   <Route path="/infoKits" element={<InfoKits />} />
 
 
   </Routes>
