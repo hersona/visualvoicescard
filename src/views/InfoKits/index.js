@@ -1,6 +1,8 @@
+import Header from "../../commons/Layout/Header";
+import Footer from "../../commons/Layout/Footer";
 
-import opencardsLogo from "../../assets/opencards.png";
-import openmindLogo from "../../assets/openmind.png";
+import Accordion from "./Components/Accordion";
+
 import coverKit1 from "../../assets/KitsCovers/Breakthrough.png";
 import photoKit1 from "../../assets/photoIntro.png";
 
@@ -8,26 +10,7 @@ const InfoKits = () => {
   return (
     <div className="lg:bg-slate-600 lg:py-10">
     <div className="lg:max-w-4xl lg:bg-white lg:p-7 lg:rounded-2xl lg:shadow-xl m-auto lg:relative">
-    <header className="p-5 md:px-20 lg:px-10">
-        <div className="flex justify-between items-center">
-            <img className="w-44" src={opencardsLogo} alt="" />
-            <div className="rounded-full bg-gray-100 py-2 px-3 flex gap-3 items-center">
-                <a href="">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M21 21L16.514 16.506M19 10.5C19 12.7543 18.1045 14.9163 16.5104 16.5104C14.9163 18.1045 12.7543 19 10.5 19C8.24566 19 6.08365 18.1045 4.48959 16.5104C2.89553 14.9163 2 12.7543 2 10.5C2 8.24566 2.89553 6.08365 4.48959 4.48959C6.08365 2.89553 8.24566 2 10.5 2C12.7543 2 14.9163 2.89553 16.5104 4.48959C18.1045 6.08365 19 8.24566 19 10.5V10.5Z" stroke="#5D863A" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                </a>
-                <a className="">
-                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M8 8H24V9.6H8V8ZM8 15.2H24V16.8H8V15.2ZM8 22.4H24V24H8V22.4Z" fill="#59595A"/>
-                    </svg>     
-                </a>
-               
-            </div>
-        </div>
-        
-     
-    </header>
+    <Header/>
     <div className="fixed bottom-3 right-3">
         <a href="" className="group flex justify-center items-center">
             <span className="transition-all bg-white/80 py-2 pl-4 pr-6 rounded-l-2xl text-gray-500 font-bold leading-none text-right shadow-lg group-hover:bg-white group-hover:text-blue-600">
@@ -64,6 +47,7 @@ const InfoKits = () => {
     </div>
 
     {/* <!-- Collapsibles --> */}
+    <Accordion />
     <div className="p-5 md:px-20 lg:px-10">
         <div className="border-b-2 border-green3">
             <a className="flex justify-between w-full px-5 py-3 bg-gray-600 text-white border-b border-green2 rounded-t-2xl">
@@ -103,12 +87,7 @@ const InfoKits = () => {
     </div>
 
 
-    <footer className="text-center mt-16 mb-10 flex items-center gap-4 flex-col">
-        <p className="text-gray-400 text-sm">Openmind Consulting & Design © <br/>Todos los derechos reservados</p>
-        <img src={openmindLogo} alt="" />
-        <a className="text-gray-400 text-sm" href="http://www.openmind-global.com" target="_blank" rel="noopener noreferrer">www.openmind-global.com</a>
-
-    </footer>
+    <Footer/>
 </div>
   
       

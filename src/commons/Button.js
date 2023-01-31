@@ -2,7 +2,7 @@ const Button = ({ children, handleClick }) => {
   return (
     <button 
     onClick={handleClick} 
-    className='bg-YVcyan rounded-tl-[50px] rounded-r-[30px] rounded-bl-[4px] min-w-[200px] py-3 px-6 text-white text-xl leading-5 hover:bg-cyan-600 hover:shadow-md transition-all ease-out'
+    className="bg-green3 text-white py-2 px-4 mx-auto mt-8 max-w-max rounded-xl flex items-center justify-center gap-2 hover:shadow-lg hover:bg-green4 transition-all duration-200"
     >
   {children}
     </button>);
