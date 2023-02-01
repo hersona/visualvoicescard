@@ -46,46 +46,9 @@ const InfoKits = () => {
         <p>Praesent interdum scelerisque risus, ac volutpat ligula ultricies vel. Etiam maximus, mi vitae dictum luctus, enim quam venenatis massa, sed sodales magna magna in magna. Etiam et enim at risus luctus dapibus vitae quis massa. Proin euismod ligula mauris, ac pellentesque ipsum condimentum eget. Sed rutrum suscipit elementum. Cras at tincidunt lorem, vitae euismod lorem. Quisque ut augue a magna feugiat congue eget at lacus. Proin a rhoncus velit. Aenean hendrerit, nisl nec facilisis tempor, nulla sapien auctor mauris, eget eleifend ex lectus non arcu. Nulla sem lacus, dignissim ut gravida a, interdum non massa. Pellentesque rhoncus sapien consectetur rutrum dictum.</p>
     </div>
 
-    {/* <!-- Collapsibles --> */}
+    
     <Accordion />
-    <div className="p-5 md:px-20 lg:px-10">
-        <div className="border-b-2 border-green3">
-            <a className="flex justify-between w-full px-5 py-3 bg-gray-600 text-white border-b border-green2 rounded-t-2xl">
-                Introducción
-                <span className="rotate-180 bg-green2 rounded-full flex justify-center align-center w-6 h-6">
-                    <svg className="stroke-white w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="4" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>      
-                </span>
-            </a>
-            <div className="px-6 py-5 bg-yellow-50/60 text-gray-600 space-y-4">
-                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-
-                <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-            </div>
-        </div>
-        <div className="border-b border-green3">
-            <a className="flex justify-between w-full px-5 py-3 bg-green3/20 text-gray-600 font-bold rounded-none border-none border-green2">
-                Dos
-                <span className="bg-green3 rounded-full flex justify-center align-center w-6 h-6">
-                    <svg className="stroke-white w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>      
-                </span>
-            </a>
-        </div>
-        <div className="border-b border-green3 rounded-b-2xl overflow-hidden">
-            <a className="flex justify-between w-full px-5 py-3 bg-green3/20 text-gray-600 font-bold rounded-none border-none border-green2">
-                Tres
-                <span className="bg-green3 rounded-full flex justify-center align-center w-6 h-6">
-                    <svg className="stroke-white w-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="4" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                    </svg>      
-                </span>
-            </a>
-        </div>
-    </div>
-
+  
 
     <Footer/>
 </div>

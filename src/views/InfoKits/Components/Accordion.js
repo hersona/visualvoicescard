@@ -4,14 +4,16 @@ import AccordionLayout from '../../../commons/Accordion/AccordionLayout';
 const Accordion = () => {
   const [activeIndex, setActiveIndex] = useState(1); 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='p-5 md:px-20 lg:px-10'>
+        
           <AccordionLayout 
-            title="Accordion 1"
+            title="Introducción"
             index={1}
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           >
-            This is Accordion 1 Content    
+            <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
+            <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>  
           </AccordionLayout>
 
           <AccordionLayout 
@@ -30,6 +32,7 @@ const Accordion = () => {
           >
             This is Accordion 3 Content    
           </AccordionLayout>
+          
     </div>
   );
 };
