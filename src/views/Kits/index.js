@@ -1,4 +1,4 @@
-import Header from "../../commons/Layout/Header";
+import Header from "../../commons/Layout/Header/Header";
 import Footer from "../../commons/Layout/Footer";
 import CoverKit from "./Components/CoverKit";
 
@@ -20,7 +20,7 @@ const Kits = () => {
             <Header/>
             
             <div className="flex items-center justify-center my-4 flex-col relative">
-                <select className="text-green4 border border-green3 py-2 px-6 pr-12 rounded-xl shadow-2xl gap-2 flex items-center justify-center hover:shadow-none" href=""> 
+                <select className="text-green4 border border-green3 py-2 px-6 pr-12 rounded-xl shadow-2xl gap-2 flex items-center justify-center hover:shadow-none transition-all duration-500"> 
                     <option>Todas las categorías</option>
                     <option>Categoría 1</option>
                     <option>Categoría 2</option>

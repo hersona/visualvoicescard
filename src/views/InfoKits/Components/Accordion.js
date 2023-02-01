@@ -22,7 +22,7 @@ const Accordion = () => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           >
-            This is Accordion 2 Content    
+            <p>This is Accordion 2 Content    </p> 
           </AccordionLayout>
           <AccordionLayout 
             title="Accordion 3"
@@ -30,7 +30,7 @@ const Accordion = () => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           >
-            This is Accordion 3 Content    
+            <p>This is Accordion 3 Content    </p>
           </AccordionLayout>
           
     </div>
