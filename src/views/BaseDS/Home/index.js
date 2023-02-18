@@ -31,7 +31,7 @@ const Home = () => {
       
       <div className='space-y-4 mb-12'>
         <p>
-          Como es de su conocimiento, la compañía actualmente está desarrollando la medición de clima organizacional 2021, esta tiene como objetivo conocer el grado de satisfacción de los colaboradores frente al ambientelaboral, tomando en cuenta diversos aspectos o temáticas de la compañía. En este sentido queremos solicitarle su participación en este proceso contestando la encuesta, tomando como referencia el último año de trabajo.
+          Como es de su conocimientos, la compañía actualmente está desarrollando la medición de clima organizacional 2021, esta tiene como objetivo conocer el grado de satisfacción de los colaboradores frente al ambientelaboral, tomando en cuenta diversos aspectos o temáticas de la compañía. En este sentido queremos solicitarle su participación en este proceso contestando la encuesta, tomando como referencia el último año de trabajo.
         </p>
         <p>
           La información que suministre será tratada de manera confidencial por nuestra firma consultora (<a className='text-sky-500 underline-offset-2 underline' href='#!'>Your Voice</a>), esta no será divulgada de manera escrita o electrónica. La información suministrada contribuirá al desarrollo y mejoramiento continuo de la organización.
