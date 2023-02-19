@@ -5,9 +5,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'YVcyan': '#00AAC4',
-        'YVyellow': '#FFDE16',
-        'YVmagenta': '#D5227C',
+        green1: '#C4C465',
+        green2: '#B7B73D',
+        green3: '#85B33F',
+        green4: '#5D863A',
       },
       animation: {
         loader: 'loader 0.6s infinite alternate'
