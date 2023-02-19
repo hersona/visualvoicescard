@@ -14,7 +14,6 @@ export const getCards = async () => {
     }
 };
 
-
 export const getCard = async (courseId) => {
 
     try{

@@ -24,8 +24,10 @@ const Survey = () => {
   };
 
 
+  
   getCards().then((res)=> console.log(res));
   getCard("2oJu8awWy97UFBX0y8fjUE").then((res)=> console.log(res));
+
 
   const {
     data: survey,
