@@ -4,7 +4,7 @@ export const getCards = async () => {
 
     try{
         return  client.getEntries({
-            content_type: "productoOpemindTools",
+            content_type: "producto",
             locale : "es-CO"
         }).then(res => res.items);
         
