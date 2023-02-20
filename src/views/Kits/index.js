@@ -3,22 +3,31 @@ import Footer from "../../commons/Layout/Footer";
 import CoverKit from "./Components/CoverKit";
 import { useState, useEffect } from "react";
 import { getCard, getCards } from "../../contentful/apiContentFul";
+import { useNavigate } from "react-router";
 
 const Kits = () => {
   const [listCards, setListCards] = useState({});
+  const navigate = useNavigate();
 
   //Pasar el parametro [] para evitar el ciclo infinito
   useEffect(() => {
-    getCards().then((res) => setListCards({ ...res }));
+    getCards().then((res) => {
+        localStorage.setItem('objItemsCards', JSON.stringify(res));
+        setListCards({ ...res })
+    });
   }, []);
 
-  getCard("5ta2HXMo1O2WsYwy6GcE06").then((res)=> console.log(res));
+  //getCard("5ta2HXMo1O2WsYwy6GcE06").then((res)=> console.log(res));
+
+  const handleClickKit = (kitId) => {
+    navigate(`/infokits/${kitId}`);
+  };
 
   //Renderizar contenido a partir de respuesta de contentful
   const renderContent = () => {
     if (Object.keys(listCards).length > 0) {
         return(
-        <CoverKit listImage={listCards}>
+        <CoverKit listImage={listCards} onBtnClickKit={handleClickKit}>
         </CoverKit>
         );
     }
