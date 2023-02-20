@@ -1,5 +1,8 @@
 import { useNavigate, useParams } from "react-router";
 import { useState } from "react";
+
+import { getCard, getCards } from "../../contentful/apiContentFul"
+
 import {
   useFetchSurveyQuery,
   useFetchTokenQuery
@@ -20,14 +23,17 @@ const Survey = () => {
     navigate(`/survey/${surveyId}/demographic`);
   };
 
-  const {
+  getCards().then((res)=> console.log(res));
+  getCard("2oJu8awWy97UFBX0y8fjUE").then((res)=> console.log(res));
+
+  /*const {
     data: survey,
     isLoading,
     isSuccess,
     isFetching,
     error,
-  } = useFetchSurveyQuery(surveyId);
-  
+  } = useFetchSurveyQuery(surveyId);*/
+  /*
   if(survey != null)
     console.log(survey);
 
@@ -64,7 +70,7 @@ const Survey = () => {
         <div className="px-11 py-12 text-slate-500">{renderContent()}</div>
       </div>
     </>
-  );
+  );*/
 };
 
 export default Survey;
