@@ -1,7 +1,7 @@
 {
   "name": "visual-voices",
   "version": "0.1.0",
-  "homepage": "http://platform.openmindintelligence.com/survey",
+  "homepage": "https://app.visualvoices.co/opencards",
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",

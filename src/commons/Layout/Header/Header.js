@@ -6,7 +6,7 @@ import SearchBox from "../Header/Components/SearchBox";
 
 import { HiOutlineBars3BottomRight, HiOutlineMagnifyingGlass, HiXMark } from "react-icons/hi2";
 
-const Header = () => {
+const Header = ({onHandleChangeSearch}) => {
     function handleMenu() {
         setMenuState( menuState => !menuState);
     }
@@ -39,7 +39,7 @@ const Header = () => {
             </div>
 
             <div className={`${toogleSearch}`}>
-                <SearchBox/>    
+                <SearchBox onHandleChangeSearch={onHandleChangeSearch}/>    
             </div>   
                 
         </header>

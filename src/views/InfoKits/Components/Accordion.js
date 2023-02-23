@@ -1,40 +1,24 @@
-import React, { useState } from 'react';
-import AccordionLayout from '../../../commons/Accordion/AccordionLayout';
+import React, { useState } from "react";
+import AccordionLayout from "../../../commons/Accordion/AccordionLayout";
 
-const Accordion = () => {
-  const [activeIndex, setActiveIndex] = useState(1); 
-  return (
-    <div className='p-5 md:px-20 lg:px-10'>
-        
-          <AccordionLayout 
-            title="Introducción"
-            index={1}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-          >
-            <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-            <p>Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>  
-          </AccordionLayout>
+const Accordion = ({ listMethods }) => {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-          <AccordionLayout 
-            title="Accordion 2"
-            index={2}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-          >
-            <p>This is Accordion 2 Content    </p> 
-          </AccordionLayout>
-          <AccordionLayout 
-            title="Accordion 3"
-            index={3}
-            activeIndex={activeIndex}
-            setActiveIndex={setActiveIndex}
-          >
-            <p>This is Accordion 3 Content    </p>
-          </AccordionLayout>
-          
-    </div>
-  );
+  const itemList = Object.keys(listMethods).map((e, i) => {
+    return (
+      <AccordionLayout
+      key={listMethods[e].sys.id} 
+      title={listMethods[e].fields.titulo}
+      index={e}
+      activeIndex={activeIndex}
+      setActiveIndex={setActiveIndex}
+    >
+      <div dangerouslySetInnerHTML={{__html: listMethods[e].fields.descripcion}} />
+    </AccordionLayout>
+    );
+  });
+  return itemList;
+  
 };
 
 export default Accordion;

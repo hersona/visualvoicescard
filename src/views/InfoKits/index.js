@@ -6,16 +6,23 @@ import CtaFloating from "./Components/CtaFloating";
 
 import { HiLogin } from "react-icons/hi";
 
-import coverKit1 from "../../assets/KitsCovers/Breakthrough.png";
-import photoKit1 from "../../assets/photoIntro.png";
+
 
 import { useState, useEffect } from "react";
 import { getCard, getCards } from "../../contentful/apiContentFul";
 import { useNavigate, useParams } from "react-router";
 
+
 const InfoKits = () => {
   const [items, setItems] = useState([]);
   const { kitId } = useParams();
+  const [objListMethods, setMethods] = useState({});
+  const navigate = useNavigate();
+  
+  const handleBack = (kitId) => {
+    navigate(`/opencards`);
+  };
+
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("objItemsCards"));
@@ -24,10 +31,24 @@ const InfoKits = () => {
     }
   }, []);
 
-  //console.log(items);
+  //Pasar el parametro [] para evitar el ciclo infinito
+  useEffect(() => {
+    getCard(kitId).then((res) => {
+      setMethods({ ...res });
+    });
+  }, []);
 
   const objKit = items.find((element) => element.sys.id == kitId);
-  console.log(objKit);
+  const objMethodsOrder = null;
+
+  //Renderizar contenido a partir de respuesta de contentful
+  const renderContent = () => {
+    if (Object.keys(objListMethods).length > 0) {
+      return (
+        <Accordion listMethods={objListMethods} />
+      );
+    }
+  };
 
   if (objKit != null) {
     return (
@@ -38,7 +59,7 @@ const InfoKits = () => {
           <CtaFloating />
 
           <div className="px-5 md:px-20 lg:px-10 flex flex-col justify-start items-start gap-3 my-5">
-            <button className="bg-green1/50 rounded-full text-[#727221] py-0 pl-2 pr-3 flex items-center gap-1 max-w-max">
+            <button onClick={handleBack} className="bg-green1/50 rounded-full text-[#727221] py-0 pl-2 pr-3 flex items-center gap-1 max-w-max">
               <HiLogin />
               Regresar
             </button>
@@ -58,10 +79,13 @@ const InfoKits = () => {
               alt=""
             />
           </div>
-          <div  dangerouslySetInnerHTML={{__html: objKit.fields.descripcion}} className="mt-4 px-5 py-8 text-gray-500 space-y-5 md:px-20 lg:px-10"></div>
-
-          <Accordion />
-
+          <div
+            dangerouslySetInnerHTML={{ __html: objKit.fields.descripcion }}
+            className="mt-4 px-5 py-8 text-gray-500 space-y-5 md:px-20 lg:px-10"
+          ></div>
+          <div className="p-5 md:px-20 lg:px-10">
+            { renderContent() }
+          </div>
           <Footer />
         </div>
       </div>

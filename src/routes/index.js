@@ -26,7 +26,8 @@ const RoutesComponent = () => (
 
    <Route path="/welcome" element={<Welcome />} />
    <Route path="/kits" element={<Kits />} />
-   <Route path="/infoKits/:kitId" element={<InfoKits />} />
+   <Route path="/opencards" element={<Kits />} />
+   <Route path="/opencards/infoKits/:kitId" element={<InfoKits />} />
 
 
   </Routes>

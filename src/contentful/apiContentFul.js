@@ -18,7 +18,7 @@ export const getCard = async (courseId) => {
 
     try{
         return  client.getEntries(Object.assign({
-            content_type: 'modulosProductoOpenmindTools',
+            content_type: 'moduloProducto',
             locale : "es-CO"
         }, { 'fields.productoRelacionado.sys.id': courseId }))
         .then(res => res.items);
