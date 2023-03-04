@@ -44,8 +44,9 @@ const InfoKits = () => {
   //Renderizar contenido a partir de respuesta de contentful
   const renderContent = () => {
     if (Object.keys(objListMethods).length > 0) {
+      const objListMethodsOrder = [...Object.values(objListMethods)].sort((a, b) => a.fields.orden - b.fields.orden);
       return (
-        <Accordion listMethods={objListMethods} />
+        <Accordion listMethods={objListMethodsOrder} />
       );
     }
   };

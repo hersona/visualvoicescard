@@ -7,7 +7,7 @@ const SearchBox = ({onHandleChangeSearch}) => {
             <span className="bg-green3/25 p-2 rounded-xl rounded-tr-md ">
             <HiOutlineMagnifyingGlass className="w-7 h-7 stroke-green4"/>
             </span>
-            <input onChange={onHandleChangeSearch} placeholder="Buscar Kit" className="bg-white w-full rounded-xl rounded-tr-md px-3 border-white" type="text" />
+            <input id="txtSearch" onChange={onHandleChangeSearch} placeholder="Buscar Kit" className="bg-white w-full rounded-xl rounded-tr-md px-3 border-white" type="text" />
         </div>
     );
 }

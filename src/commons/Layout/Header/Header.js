@@ -23,16 +23,7 @@ const Header = ({onHandleChangeSearch}) => {
         <header className="p-5 md:px-20 lg:px-10">
             <div className="flex justify-between items-center">
                 <img src={opencardsLogo} alt="" />
-                <div className="rounded-full bg-gray-100 py-2 px-3 flex gap-3 items-center">
-                    <button onClick={handleSearch}>
-                        <HiOutlineMagnifyingGlass className="w-7 h-7 stroke-slate-500"/>
-                    </button>
-                    
-                    <button onClick={handleMenu}>
-                        <HiOutlineBars3BottomRight className="w-7 h-7 stroke-slate-500"/>                   
-                    </button>
-                
-                </div>
+              
             </div>
             <div className={`relative z-50 transition-all duration-500 h-0 opacity-0 ${toogleMenu}`}>
                 <Menu/>  

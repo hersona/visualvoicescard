@@ -23,22 +23,27 @@ const Kits = () => {
   };
 
   const handleChangeSearch = (e) => {
-    setSearchField(e.target.value);
-    console.log(searchField); 
     const listCards = JSON.parse(localStorage.getItem("objItemsCards"));
-    console.log(listCards);
-    if (searchField != "")
-    {
-      console.log(   listCards.filter((element) =>
-          element.fields.titulo.includes(searchField)));
-          
+    //console.log(listCards);
+    if (e.target.value != "") {
+      /*console.log(
+        listCards.filter((element) =>
+          element.fields.titulo
+            .toString()
+            .toLowerCase()
+            .includes(e.target.value.toString().toLowerCase())
+        )
+      );*/
+
       setListCards(
         listCards.filter((element) =>
-          element.fields.titulo.includes(searchField)
+          element.fields.titulo
+            .toString()
+            .toLowerCase()
+            .includes(e.target.value.toString().toLowerCase())
         )
       );
-    }
-    else setListCards(JSON.parse(localStorage.getItem("objItemsCards")));
+    } else setListCards(JSON.parse(localStorage.getItem("objItemsCards")));
   };
 
   //Renderizar contenido a partir de respuesta de contentful
@@ -58,17 +63,6 @@ const Kits = () => {
       <div className="lg:max-w-4xl lg:bg-white lg:p-7 lg:rounded-2xl lg:shadow-xl m-auto lg:relative">
         <Header onHandleChangeSearch={handleChangeSearch} />
 
-        <div className="flex items-center justify-center my-4 flex-col relative">
-          <select className="text-green4 border border-green3 py-2 px-6 pr-12 rounded-xl shadow-2xl gap-2 flex items-center justify-center hover:shadow-none transition-all duration-500">
-            <option>Todas las categorías</option>
-            <option>Categoría 1</option>
-            <option>Categoría 2</option>
-            <option>Categoría 3</option>
-            <option>Categoría 4</option>
-            <option>Categoría 5</option>
-            <option>Categoría 6</option>
-          </select>
-        </div>
         <div className="w-full grid gap-4 p-3 md:px-20 lg:px-10 justify-center grid-cols-[repeat(auto-fill,_minmax(min(100%,_120px),_1fr))]">
           {renderContent()}
         </div>
