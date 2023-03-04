@@ -4,8 +4,6 @@ const CoverKit = ({ listImage, onBtnClickKit }) => {
         onBtnClickKit(id);
     };
 
-//{listImage[e].sys.id}
-
   const itemList = Object.keys(listImage).map((e, i) => {
       return (<a key={listImage[e].sys.id} 
         href={"/opencards/infokits/" + listImage[e].sys.id}

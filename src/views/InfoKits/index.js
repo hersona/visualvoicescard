@@ -6,23 +6,19 @@ import CtaFloating from "./Components/CtaFloating";
 
 import { HiLogin } from "react-icons/hi";
 
-
-
 import { useState, useEffect } from "react";
 import { getCard, getCards } from "../../contentful/apiContentFul";
 import { useNavigate, useParams } from "react-router";
-
 
 const InfoKits = () => {
   const [items, setItems] = useState([]);
   const { kitId } = useParams();
   const [objListMethods, setMethods] = useState({});
   const navigate = useNavigate();
-  
+
   const handleBack = (kitId) => {
     navigate(`/opencards`);
   };
-
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("objItemsCards"));
@@ -39,15 +35,20 @@ const InfoKits = () => {
   }, []);
 
   const objKit = items.find((element) => element.sys.id == kitId);
-  const objMethodsOrder = null;
+  //console.log(objKit);
+
+  const handleClickMarket = () => {
+    //console.log(objKit.fields.urlTiendaProducto);
+    window.open(objKit.fields.urlTiendaProducto, '_blank');
+  };
 
   //Renderizar contenido a partir de respuesta de contentful
   const renderContent = () => {
     if (Object.keys(objListMethods).length > 0) {
-      const objListMethodsOrder = [...Object.values(objListMethods)].sort((a, b) => a.fields.orden - b.fields.orden);
-      return (
-        <Accordion listMethods={objListMethodsOrder} />
+      const objListMethodsOrder = [...Object.values(objListMethods)].sort(
+        (a, b) => a.fields.orden - b.fields.orden
       );
+      return <Accordion listMethods={objListMethodsOrder} />;
     }
   };
 
@@ -57,10 +58,16 @@ const InfoKits = () => {
         <div className="lg:max-w-4xl lg:bg-white lg:p-7 lg:rounded-2xl lg:shadow-xl m-auto lg:relative">
           <Header />
 
-          <CtaFloating />
+          <CtaFloating
+            urlMarket={objKit.fields.urlTiendaProducto}
+            onhandleClickMarket={handleClickMarket}
+          />
 
           <div className="px-5 md:px-20 lg:px-10 flex flex-col justify-start items-start gap-3 my-5">
-            <button onClick={handleBack} className="bg-green1/50 rounded-full text-[#727221] py-0 pl-2 pr-3 flex items-center gap-1 max-w-max">
+            <button
+              onClick={handleBack}
+              className="bg-green1/50 rounded-full text-[#727221] py-0 pl-2 pr-3 flex items-center gap-1 max-w-max"
+            >
               <HiLogin />
               Regresar
             </button>
@@ -84,9 +91,7 @@ const InfoKits = () => {
             dangerouslySetInnerHTML={{ __html: objKit.fields.descripcion }}
             className="mt-4 px-5 py-8 text-gray-500 space-y-5 md:px-20 lg:px-10"
           ></div>
-          <div className="p-5 md:px-20 lg:px-10">
-            { renderContent() }
-          </div>
+          <div className="p-5 md:px-20 lg:px-10">{renderContent()}</div>
           <Footer />
         </div>
       </div>
