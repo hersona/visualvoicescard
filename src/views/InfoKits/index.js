@@ -5,6 +5,8 @@ import Accordion from "./Components/Accordion";
 import CtaFloating from "./Components/CtaFloating";
 
 import { HiLogin } from "react-icons/hi";
+import { HiPlay } from "react-icons/hi2";
+import { HiOutlineInformationCircle } from "react-icons/hi2";
 
 import { useState, useEffect } from "react";
 import { getCard, getCards } from "../../contentful/apiContentFul";
@@ -91,6 +93,14 @@ const InfoKits = () => {
             dangerouslySetInnerHTML={{ __html: objKit.fields.descripcion }}
             className="mt-4 px-5 py-8 text-gray-500 space-y-5 md:px-20 lg:px-10"
           ></div>
+          <div className="p-5 md:px-20 lg:px-10 bg-slate-200 flex items-center justify-center flex-col gap-3 rounded-lg max-w-xl text-center mx-auto">
+            <p className="text-xl text-slate-600">Introduce el código de tu kit para explorar el contenido exclusivo: <HiOutlineInformationCircle className='stroke-slate-500 w-5 h-5 inline-block' /></p>
+            <div className="flex justify-center">
+              <input className="p-2 rounded-l-md text-center text-2xl tracking-wider"></input>
+              <button className="rounded-r-2xl bg-green3 p-2 hover:bg-slate-600"><HiPlay className='fill-white w-7 h-10 transition-all duration-500' /></button>
+            </div>
+            
+          </div>
           <div className="p-5 md:px-20 lg:px-10">{renderContent()}</div>
           <Footer />
         </div>
