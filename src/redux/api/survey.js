@@ -58,27 +58,6 @@ export const cardVerifyCodeApi = createApi({
 export const { useFetchCardVerifyMutation } = cardVerifyCodeApi;
 
 
-/*export const cardVerifyCodeApi = createApi({
-  reducerPath: "cardVerifyCodeApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089/api/AppCode" }),
-  endpoints: (build) => ({
-    fetchCardVerify: build.query({
-      query: ({accesTokenApi, payload}) => ({
-        url: "/ValidateAppCode",
-        method: "POST",
-        body: payload,
-        headers: {
-          "Content-type": "application/json",
-          "Authorization": "Bearer " + accesTokenApi,
-        },
-      })
-    }),
-  }),
-});
-export const { useFetchCardVerifyQuery } = cardVerifyCodeApi;*/
-
-
-
 async function callApiBearer(shaGenerated, surveyId, fetchWithBQ) {
   const randomResult = await fetchWithBQ(`/${shaGenerated}`);
   const headers = {

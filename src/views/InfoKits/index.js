@@ -22,47 +22,16 @@ const InfoKits = () => {
   const { kitId } = useParams();
   const [objListMethods, setMethods] = useState({});
   const [codeValidate, setCodeValidate] = useState("");
+  const [methodsEnable, setMethodsEnable] = useState(false);
 
   //Llamar servicios de validar codigo
   const [validateToken, response] = useFecthTokenApiMutation();
   const [validateCode, responseCode] = useFetchCardVerifyMutation();
+  const [stateCodeValidate, setStateCodeValidate] = useState("");
 
   const navigate = useNavigate();
   const handleBack = (kitId) => {
     navigate(`/opencards`);
-  };
-
-  const HandleBtnCode = () => {
-   // console.log("HOLA" + codeValidate);
-
-    let payload = {
-      CodeApp: codeValidate,
-      UserEmail: "Dylan@io.com",
-      UserName: "Dylan",
-      CodeKit: "Kit React",
-    };
-
-    //Primero se obtiene token
-    validateToken()
-      .unwrap()
-      .then((responseToken) => {
-        var accesTokenApi = JSON.parse(
-          JSON.stringify(responseToken)
-        ).access_token;
-
-        //Segundo con el token generado se llama el servicio de validar codigo
-        validateCode({ accesTokenApi, payload })
-          .unwrap()
-          .then((responseCode) => {
-            console.log(responseCode);
-          })
-          .then((errorCodeValidate) => {
-            if (errorCodeValidate != null) console.log(errorCodeValidate);
-          });
-      })
-      .then((errorToken) => {
-        if (errorToken != null) console.log(errorToken);
-      });
   };
 
   useEffect(() => {
@@ -86,6 +55,62 @@ const InfoKits = () => {
   const objKit = items.find((element) => element.sys.id == kitId);
   //console.log(objKit);
 
+  const HandleBtnCode = () => {
+    let payload = {
+      CodeApp: codeValidate,
+      UserEmail: "Dylan@io.com",
+      UserName: "Dylan",
+      CodeKit: objKit.fields.tituloInterno,
+    };
+
+    //Primero se obtiene token
+    validateToken()
+      .unwrap()
+      .then((responseToken) => {
+        var accesTokenApi = JSON.parse(
+          JSON.stringify(responseToken)
+        ).access_token;
+
+        //Segundo con el token generado se llama el servicio de validar codigo
+        validateCode({ accesTokenApi, payload })
+          .unwrap()
+          .then((responseCode) => {
+            processResponseCard(JSON.parse(JSON.stringify(responseCode)));
+          })
+          .then((errorCodeValidate) => {
+            if (errorCodeValidate != null) console.log(errorCodeValidate);
+          });
+      })
+      .then((errorToken) => {
+        if (errorToken != null) console.log(errorToken);
+      });
+  };
+
+  //Procesar la respuesta del API de validar tarjeta
+  function processResponseCard(responseCard) {
+    console.log(responseCard.Error);
+
+    switch (responseCard.Error) {
+      //Respuesta del servicio OK
+      case "0": {
+        //Codigo disponible
+        setStateCodeValidate("Codigo disponible");
+        setMethodsEnable(true);
+        break;
+      }
+      //Codigo no valido
+      case "1": {
+        setStateCodeValidate("Codigo no valido");
+        break;
+      }
+      //Codigo ya utilizado
+      case "2": {
+        setStateCodeValidate("Codigo ya utilizado");
+        break;
+      }
+    }
+  }
+
   const handleClickMarket = () => {
     //console.log(objKit.fields.urlTiendaProducto);
     window.open(objKit.fields.urlTiendaProducto, "_blank");
@@ -93,11 +118,14 @@ const InfoKits = () => {
 
   //Renderizar contenido a partir de respuesta de contentful
   const renderContent = () => {
-    if (Object.keys(objListMethods).length > 0) {
-      const objListMethodsOrder = [...Object.values(objListMethods)].sort(
-        (a, b) => a.fields.orden - b.fields.orden
-      );
-      return <Accordion listMethods={objListMethodsOrder} />;
+    console.log(methodsEnable);
+    if (methodsEnable) {
+      if (Object.keys(objListMethods).length > 0) {
+        const objListMethodsOrder = [...Object.values(objListMethods)].sort(
+          (a, b) => a.fields.orden - b.fields.orden
+        );
+        return <Accordion listMethods={objListMethodsOrder} />;
+      }
     }
   };
 
@@ -161,6 +189,9 @@ const InfoKits = () => {
               >
                 <HiPlay className="fill-white w-7 h-10 transition-all duration-500" />
               </button>
+            </div>
+            <div>
+              <h2>{stateCodeValidate}</h2>
             </div>
           </div>
           <div className="p-5 md:px-20 lg:px-10">{renderContent()}</div>
