@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/opencards/static/css/main.70dc32bb.css",
-    "main.js": "/opencards/static/js/main.a7eeede1.js",
+    "main.css": "/opencards/static/css/main.a3e40595.css",
+    "main.js": "/opencards/static/js/main.f26d2af2.js",
     "static/js/27.9d993b3c.chunk.js": "/opencards/static/js/27.9d993b3c.chunk.js",
     "static/media/movie-theater.jpeg": "/opencards/static/media/movie-theater.6609df916dbea54be47e.jpeg",
     "static/media/company.png": "/opencards/static/media/company.0d2f34374416dcff2149.png",
@@ -11,7 +11,7 @@
     "index.html": "/opencards/index.html"
   },
   "entrypoints": [
-    "static/css/main.70dc32bb.css",
-    "static/js/main.a7eeede1.js"
+    "static/css/main.a3e40595.css",
+    "static/js/main.f26d2af2.js"
   ]
 }
