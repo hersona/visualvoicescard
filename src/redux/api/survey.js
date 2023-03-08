@@ -32,6 +32,44 @@ async function callApiBearer(shaGenerated, surveyId, fetchWithBQ) {
 
   return result.data ? { data: result.data } : { error: result.error };
 }
+/*
+export const cardValidateApi = createApi({
+  reducerPath: "cardValidateApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089" }),
+  endpoints: (build) => ({
+    fetchSurvey: build.query(
+      {
+      url: "/token",
+      method: "POST",
+      body: "grant_type=password&username=hersonEder@gmail.com&password=12345$$",
+      headers: {
+        "Content-type": "application/x-www-form-urlencoded",
+      },
+      invalidatesTags: ["Post"],
+    }),
+  }),
+});
+export const { useFetchCardValidate } = cardValidateApi;*/
+
+
+export const cardValidateApi = createApi({
+  reducerPath: "cardValidateApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089" }),
+  endpoints: (build) => ({
+    fetchSurvey: build.mutation({
+      query: (payload) => ({
+        url: "/questions",
+        method: "POST",
+        body: payload,
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+        },
+      }),
+      invalidatesTags: ["Post"],
+    }),
+  }),
+});
+export const { useFetchCardValidateMutation } = cardValidateApi;
 
 export const surveyApi = createApi({
   reducerPath: "surveyApi",

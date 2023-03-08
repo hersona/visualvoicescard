@@ -7,18 +7,33 @@ import CtaFloating from "./Components/CtaFloating";
 import { HiLogin } from "react-icons/hi";
 
 import { useState, useEffect } from "react";
-import { getCard, getCards } from "../../contentful/apiContentFul";
+import { getCard } from "../../contentful/apiContentFul";
 import { useNavigate, useParams } from "react-router";
+
+import {
+  useFetchCardValidateMutation
+} from "../../redux/api/survey";
+
 
 const InfoKits = () => {
   const [items, setItems] = useState([]);
   const { kitId } = useParams();
   const [objListMethods, setMethods] = useState({});
   const navigate = useNavigate();
-
   const handleBack = (kitId) => {
     navigate(`/opencards`);
   };
+  //const [addNewAnswer, response] = useFetchCardValidateMutation();
+
+  /*function HandleCodeValidateApp  (strCode)  {
+    const {
+      data: survey,
+      isLoading,
+      isSuccess,
+      isFetching,
+      error,
+    } = useFetchCardValidate(1);
+  };*/
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("objItemsCards"));
@@ -39,7 +54,7 @@ const InfoKits = () => {
 
   const handleClickMarket = () => {
     //console.log(objKit.fields.urlTiendaProducto);
-    window.open(objKit.fields.urlTiendaProducto, '_blank');
+    window.open(objKit.fields.urlTiendaProducto, "_blank");
   };
 
   //Renderizar contenido a partir de respuesta de contentful
