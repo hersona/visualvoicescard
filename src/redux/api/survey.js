@@ -17,6 +17,68 @@ const sha256 = async (message) => {
 var basePath = process.env.REACT_APP_API_NODE;
 var basePathToken = process.env.EC2_TOKEN;
 
+
+export const cardTokenApi = createApi({
+  reducerPath: "cardTokenApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089" }),
+  endpoints: (build) => ({
+    fecthTokenApi: build.mutation({
+      query: () => ({
+        url: "/token",
+        method: "POST",
+        body: "grant_type=password&username=hersonEder@gmail.com&password=12345$$",
+        headers: {
+          "Content-type": "application/x-www-form-urlencoded",
+        },
+      }),
+      invalidatesTags: ["Post"],
+    }),
+  }),
+});
+export const { useFecthTokenApiMutation } = cardTokenApi;
+
+export const cardVerifyCodeApi = createApi({
+  reducerPath: "cardVerifyCodeApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089/api/AppCode" }),
+  endpoints: (build) => ({
+    fetchCardVerify: build.mutation({
+      query: ({accesTokenApi, payload}) => ({
+        url: "/ValidateAppCode",
+        method: "POST",
+        body: payload,
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": "Bearer " + accesTokenApi,
+        },
+      }),
+      invalidatesTags: ["Post"],
+    }),
+  }),
+});
+export const { useFetchCardVerifyMutation } = cardVerifyCodeApi;
+
+
+/*export const cardVerifyCodeApi = createApi({
+  reducerPath: "cardVerifyCodeApi",
+  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089/api/AppCode" }),
+  endpoints: (build) => ({
+    fetchCardVerify: build.query({
+      query: ({accesTokenApi, payload}) => ({
+        url: "/ValidateAppCode",
+        method: "POST",
+        body: payload,
+        headers: {
+          "Content-type": "application/json",
+          "Authorization": "Bearer " + accesTokenApi,
+        },
+      })
+    }),
+  }),
+});
+export const { useFetchCardVerifyQuery } = cardVerifyCodeApi;*/
+
+
+
 async function callApiBearer(shaGenerated, surveyId, fetchWithBQ) {
   const randomResult = await fetchWithBQ(`/${shaGenerated}`);
   const headers = {
@@ -32,61 +94,11 @@ async function callApiBearer(shaGenerated, surveyId, fetchWithBQ) {
 
   return result.data ? { data: result.data } : { error: result.error };
 }
-/*
-export const cardValidateApi = createApi({
-  reducerPath: "cardValidateApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089" }),
-  endpoints: (build) => ({
-    fetchSurvey: build.query(
-      {
-      url: "/token",
-      method: "POST",
-      body: "grant_type=password&username=hersonEder@gmail.com&password=12345$$",
-      headers: {
-        "Content-type": "application/x-www-form-urlencoded",
-      },
-      invalidatesTags: ["Post"],
-    }),
-  }),
-});
-export const { useFetchCardValidate } = cardValidateApi;*/
 
 
-export const cardValidateApi = createApi({
-  reducerPath: "cardValidateApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://52.32.104.107:8089" }),
-  endpoints: (build) => ({
-    fetchSurvey: build.mutation({
-      query: (payload) => ({
-        url: "/questions",
-        method: "POST",
-        body: payload,
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      }),
-      invalidatesTags: ["Post"],
-    }),
-  }),
-});
-export const { useFetchCardValidateMutation } = cardValidateApi;
 
-export const surveyApi = createApi({
-  reducerPath: "surveyApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:4000/token" }),
-  endpoints: (build) => ({
-    fetchSurvey: build.query({
-      async queryFn(surveyId, _queryApi, _extraOptions, fetchWithBQ) {
-        let ts = Date.now();
-        let date_ob = new Date(ts);
-        return sha256("OpenM1nd@2022" + date_ob.getDay()).then((res) => {
-          return callApiBearer(res, surveyId, fetchWithBQ);
-        });
-      },
-    }),
-  }),
-});
-export const { useFetchSurveyQuery } = surveyApi;
+
+
 
 export const surveyDemographicApi = createApi({
   reducerPath: "surveyDemopraphicApi",

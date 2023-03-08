@@ -10,8 +10,6 @@ import './index.css';
 const container = document.getElementById('root');
 const root = createRoot(container);
 
-ReactDOM.render(<App />, document.getElementById('root'));
-
 root.render(
   <React.StrictMode>
     <Provider store={store}>

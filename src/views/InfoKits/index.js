@@ -13,29 +13,57 @@ import { getCard } from "../../contentful/apiContentFul";
 import { useNavigate, useParams } from "react-router";
 
 import {
-  useFetchCardValidateMutation
+  useFecthTokenApiMutation,
+  useFetchCardVerifyMutation,
 } from "../../redux/api/survey";
-
 
 const InfoKits = () => {
   const [items, setItems] = useState([]);
   const { kitId } = useParams();
   const [objListMethods, setMethods] = useState({});
+  const [codeValidate, setCodeValidate] = useState("");
+
+  //Llamar servicios de validar codigo
+  const [validateToken, response] = useFecthTokenApiMutation();
+  const [validateCode, responseCode] = useFetchCardVerifyMutation();
+
   const navigate = useNavigate();
   const handleBack = (kitId) => {
     navigate(`/opencards`);
   };
-  //const [addNewAnswer, response] = useFetchCardValidateMutation();
 
-  /*function HandleCodeValidateApp  (strCode)  {
-    const {
-      data: survey,
-      isLoading,
-      isSuccess,
-      isFetching,
-      error,
-    } = useFetchCardValidate(1);
-  };*/
+  const HandleBtnCode = () => {
+   // console.log("HOLA" + codeValidate);
+
+    let payload = {
+      CodeApp: codeValidate,
+      UserEmail: "Dylan@io.com",
+      UserName: "Dylan",
+      CodeKit: "Kit React",
+    };
+
+    //Primero se obtiene token
+    validateToken()
+      .unwrap()
+      .then((responseToken) => {
+        var accesTokenApi = JSON.parse(
+          JSON.stringify(responseToken)
+        ).access_token;
+
+        //Segundo con el token generado se llama el servicio de validar codigo
+        validateCode({ accesTokenApi, payload })
+          .unwrap()
+          .then((responseCode) => {
+            console.log(responseCode);
+          })
+          .then((errorCodeValidate) => {
+            if (errorCodeValidate != null) console.log(errorCodeValidate);
+          });
+      })
+      .then((errorToken) => {
+        if (errorToken != null) console.log(errorToken);
+      });
+  };
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("objItemsCards"));
@@ -43,6 +71,10 @@ const InfoKits = () => {
       setItems(items);
     }
   }, []);
+
+  const handleChangeTextBox = (event) => {
+    setCodeValidate(event.target.value);
+  };
 
   //Pasar el parametro [] para evitar el ciclo infinito
   useEffect(() => {
@@ -109,12 +141,27 @@ const InfoKits = () => {
             className="mt-4 px-5 py-8 text-gray-500 space-y-5 md:px-20 lg:px-10"
           ></div>
           <div className="p-5 md:px-20 lg:px-10 bg-slate-200 flex items-center justify-center flex-col gap-3 rounded-lg max-w-xl text-center mx-auto">
-            <p className="text-xl text-slate-600">Introduce el código de tu kit para explorar el contenido exclusivo: <HiOutlineInformationCircle className='stroke-slate-500 w-5 h-5 inline-block' /></p>
+            <p className="text-xl text-slate-600">
+              Introduce el código de tu kit para explorar el contenido
+              exclusivo:{" "}
+              <HiOutlineInformationCircle className="stroke-slate-500 w-5 h-5 inline-block" />
+            </p>
             <div className="flex justify-center">
-              <input className="p-2 rounded-l-md text-center text-2xl tracking-wider"></input>
-              <button className="rounded-r-2xl bg-green3 p-2 hover:bg-slate-600"><HiPlay className='fill-white w-7 h-10 transition-all duration-500' /></button>
+              <input
+                id="codeValidate"
+                name="codeValidate"
+                value={codeValidate}
+                onChange={handleChangeTextBox}
+                className="p-2 rounded-l-md text-center text-2xl tracking-wider"
+              ></input>
+
+              <button
+                onClick={HandleBtnCode}
+                className="rounded-r-2xl bg-green3 p-2 hover:bg-slate-600"
+              >
+                <HiPlay className="fill-white w-7 h-10 transition-all duration-500" />
+              </button>
             </div>
-            
           </div>
           <div className="p-5 md:px-20 lg:px-10">{renderContent()}</div>
           <Footer />
