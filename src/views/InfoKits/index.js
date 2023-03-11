@@ -149,23 +149,32 @@ const InfoKits = () => {
       return (
         <div className="p-5 md:px-20 lg:px-10 bg-slate-200 flex items-center justify-center flex-col gap-3 rounded-lg max-w-xl text-center mx-auto">
           <p className="text-xl text-slate-600">
-            Introduce el código de tu kit para explorar el contenido exclusivo:{" "}
+            Introduce el código de tu kit para <br></br>explorar el contenido exclusivo:{" "}
             <HiOutlineInformationCircle className="stroke-slate-500 w-5 h-5 inline-block" />
           </p>
-          <div className="flex justify-center">
+          <div className="flex justify-center flex-col gap-2">
             <input
+            placeholder="____________"
               id="codeValidate"
               name="codeValidate"
               value={codeValidate}
               onChange={handleChangeTextBox}
               className="p-2 rounded-l-md text-center text-2xl tracking-wider"
             ></input>
+            <input
+                type="email"
+                placeholder="Correo Electrónico"
+                className="p-2 rounded-md border-white"
+              ></input>
+            
 
             <button
               onClick={HandleBtnCode}
-              className="rounded-r-2xl bg-green3 p-2 hover:bg-slate-600"
+              className="rounded-2xl bg-green3 p-2 hover:bg-slate-600 text-white text-2xl font-bold flex justify-center items-center gap-2"
             >
-              <HiPlay className="fill-white w-7 h-10 transition-all duration-500" />
+              ENVIAR
+              <HiPlay className="fill-white w-6 h-8 transition-all duration-500" />
+
             </button>
           </div>
           <div>
