@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-var basePath = process.env.PATH_BASE_SERVICE_CARDS;
+//var basePath = process.env.PATH_BASE_SERVICE_CARDS;
+
+var basePath = "https://app.visualvoices.co/servicescards";
 
 export const cardTokenApi = createApi({
   reducerPath: "cardTokenApi",

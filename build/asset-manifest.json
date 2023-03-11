@@ -1,17 +1,20 @@
 {
   "files": {
-    "main.css": "/opencards/static/css/main.a3e40595.css",
-    "main.js": "/opencards/static/js/main.f26d2af2.js",
-    "static/js/27.9d993b3c.chunk.js": "/opencards/static/js/27.9d993b3c.chunk.js",
+    "main.css": "/opencards/static/css/main.7b47be07.css",
+    "main.js": "/opencards/static/js/main.3fe1cec7.js",
+    "static/js/787.497e3796.chunk.js": "/opencards/static/js/787.497e3796.chunk.js",
     "static/media/movie-theater.jpeg": "/opencards/static/media/movie-theater.6609df916dbea54be47e.jpeg",
     "static/media/company.png": "/opencards/static/media/company.0d2f34374416dcff2149.png",
     "static/media/team-working.jpg": "/opencards/static/media/team-working.0d9d47ed90d68f85cd83.jpg",
     "static/media/coverpopIntro.png": "/opencards/static/media/coverpopIntro.aa167f025448eb402f9b.png",
     "static/media/opencards.png": "/opencards/static/media/opencards.48367c2983b99de41d13.png",
-    "index.html": "/opencards/index.html"
+    "index.html": "/opencards/index.html",
+    "main.7b47be07.css.map": "/opencards/static/css/main.7b47be07.css.map",
+    "main.3fe1cec7.js.map": "/opencards/static/js/main.3fe1cec7.js.map",
+    "787.497e3796.chunk.js.map": "/opencards/static/js/787.497e3796.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.a3e40595.css",
-    "static/js/main.f26d2af2.js"
+    "static/css/main.7b47be07.css",
+    "static/js/main.3fe1cec7.js"
   ]
 }

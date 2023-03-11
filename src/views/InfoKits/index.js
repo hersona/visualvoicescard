@@ -28,6 +28,7 @@ const InfoKits = () => {
   const [validateToken, response] = useFecthTokenApiMutation();
   const [validateCode, responseCode] = useFetchCardVerifyMutation();
   const [stateCodeValidate, setStateCodeValidate] = useState("");
+  const [userEmail, setUserEmail] = useState("");
 
   const navigate = useNavigate();
   const handleBack = (kitId) => {
@@ -44,6 +45,11 @@ const InfoKits = () => {
   const handleChangeTextBox = (event) => {
     setCodeValidate(event.target.value);
   };
+
+  const handleChangeTextBoxEmail = (event) => {
+    setUserEmail(event.target.value);
+  };
+
 
   //Pasar el parametro [] para evitar el ciclo infinito
   useEffect(() => {
@@ -68,8 +74,8 @@ const InfoKits = () => {
   const HandleBtnCode = () => {
     let payload = {
       CodeApp: codeValidate,
-      UserEmail: "Dylan@io.com",
-      UserName: "Dylan",
+      UserEmail: userEmail,
+      UserName: "Generico",
       CodeKit: objKit.fields.tituloInterno,
     };
 
@@ -164,6 +170,10 @@ const InfoKits = () => {
             <input
                 type="email"
                 placeholder="Correo Electrónico"
+                id="userEmail"
+                name="userEmail"
+                value={userEmail}
+                onChange={handleChangeTextBoxEmail}
                 className="p-2 rounded-md border-white"
               ></input>
             
