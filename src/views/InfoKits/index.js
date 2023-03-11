@@ -55,6 +55,16 @@ const InfoKits = () => {
   const objKit = items.find((element) => element.sys.id == kitId);
   //console.log(objKit);
 
+  useEffect(() => {
+    if (
+      objKit != null &&
+      localStorage.getItem("objCodeSetMethod" + objKit.sys.id) !== null
+    ) {
+      console.log("entro");
+      setMethodsEnable(true);
+    }
+  }, []);
+
   const HandleBtnCode = () => {
     let payload = {
       CodeApp: codeValidate,
@@ -88,24 +98,26 @@ const InfoKits = () => {
 
   //Procesar la respuesta del API de validar tarjeta
   function processResponseCard(responseCard) {
-    console.log(responseCard.Error);
+    //console.log(responseCard);
+    //console.log(objKit);
 
     switch (responseCard.Error) {
-      //Respuesta del servicio OK
-      case "0": {
+      //"0" Codigo disponible, "2" Codigo ya utilizado pero se va permitir continuar el flujo
+      case "0":
+      case "2": {
         //Codigo disponible
         setStateCodeValidate("Codigo disponible");
         setMethodsEnable(true);
+        //Asignar con el codigo del metodo
+        localStorage.setItem(
+          "objCodeSetMethod" + objKit.sys.id,
+          responseCard.CodeApp
+        );
         break;
       }
       //Codigo no valido
       case "1": {
         setStateCodeValidate("Codigo no valido");
-        break;
-      }
-      //Codigo ya utilizado
-      case "2": {
-        setStateCodeValidate("Codigo ya utilizado");
         break;
       }
     }
@@ -118,14 +130,49 @@ const InfoKits = () => {
 
   //Renderizar contenido a partir de respuesta de contentful
   const renderContent = () => {
-    console.log(methodsEnable);
-    if (methodsEnable) {
+    //console.log(methodsEnable);
+    if (
+      methodsEnable ||
+      localStorage.getItem("objCodeSetMethod" + objKit.sys.id) !== null
+    ) {
       if (Object.keys(objListMethods).length > 0) {
         const objListMethodsOrder = [...Object.values(objListMethods)].sort(
           (a, b) => a.fields.orden - b.fields.orden
         );
         return <Accordion listMethods={objListMethodsOrder} />;
       }
+    }
+  };
+
+  const renderContentValidateCode = () => {
+    if (localStorage.getItem("objCodeSetMethod" + objKit.sys.id) == null) {
+      return (
+        <div className="p-5 md:px-20 lg:px-10 bg-slate-200 flex items-center justify-center flex-col gap-3 rounded-lg max-w-xl text-center mx-auto">
+          <p className="text-xl text-slate-600">
+            Introduce el código de tu kit para explorar el contenido exclusivo:{" "}
+            <HiOutlineInformationCircle className="stroke-slate-500 w-5 h-5 inline-block" />
+          </p>
+          <div className="flex justify-center">
+            <input
+              id="codeValidate"
+              name="codeValidate"
+              value={codeValidate}
+              onChange={handleChangeTextBox}
+              className="p-2 rounded-l-md text-center text-2xl tracking-wider"
+            ></input>
+
+            <button
+              onClick={HandleBtnCode}
+              className="rounded-r-2xl bg-green3 p-2 hover:bg-slate-600"
+            >
+              <HiPlay className="fill-white w-7 h-10 transition-all duration-500" />
+            </button>
+          </div>
+          <div>
+            <h2>{stateCodeValidate}</h2>
+          </div>
+        </div>
+      );
     }
   };
 
@@ -168,40 +215,7 @@ const InfoKits = () => {
             dangerouslySetInnerHTML={{ __html: objKit.fields.descripcion }}
             className="mt-4 px-5 py-8 text-gray-500 space-y-5 md:px-20 lg:px-10"
           ></div>
-          <div className="p-5 md:px-20 lg:px-10 bg-slate-200 flex items-center justify-center flex-col gap-3 rounded-lg max-w-xl text-center mx-auto">
-            <p className="text-xl text-slate-600">
-              Introduce el código de tu kit <br></br>para explorar el contenido
-              exclusivo:{" "}
-              <HiOutlineInformationCircle className="stroke-slate-500 w-5 h-5 inline-block" />
-            </p>
-            <div className="flex justify-center flex-col gap-3">
-              <input
-                placeholder="_________"
-                id="codeValidate"
-                name="codeValidate"
-                value={codeValidate}
-                onChange={handleChangeTextBox}
-                className="p-2 rounded-md text-center text-2xl tracking-wider"
-              ></input>
-              <input
-                type="email"
-                placeholder="Correo Electrónico"
-                className="p-2 rounded-md border-white"
-              ></input>
-
-              <button
-                onClick={HandleBtnCode}
-                className="rounded-2xl bg-green3 p-2 hover:bg-slate-600 text-white text-2xl font-bold flex justify-center items-center gap-2"
-              >
-
-                Enviar
-                <HiPlay className="fill-white w-6 h-8 transition-all duration-500" />
-              </button>
-            </div>
-            <div>
-              <h2>{stateCodeValidate}</h2>
-            </div>
-          </div>
+          {renderContentValidateCode()}
           <div className="p-5 md:px-20 lg:px-10">{renderContent()}</div>
           <Footer />
         </div>
