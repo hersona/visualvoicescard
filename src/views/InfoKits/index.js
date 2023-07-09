@@ -50,7 +50,6 @@ const InfoKits = () => {
     setUserEmail(event.target.value);
   };
 
-
   //Pasar el parametro [] para evitar el ciclo infinito
   useEffect(() => {
     getCard(kitId).then((res) => {
@@ -71,7 +70,8 @@ const InfoKits = () => {
     }
   }, []);
 
-  const HandleBtnCode = () => {
+  const HandleBtnCode = (e) => {
+    e.preventDefault();
     let payload = {
       CodeApp: codeValidate,
       UserEmail: userEmail,
@@ -155,38 +155,45 @@ const InfoKits = () => {
       return (
         <div className="p-5 md:px-20 lg:px-10 bg-slate-200 flex items-center justify-center flex-col gap-3 rounded-lg max-w-xl text-center mx-auto">
           <p className="text-xl text-slate-600">
-            Introduce el código de tu kit para <br></br>explorar el contenido exclusivo:{" "}
+            Introduce el código de tu kit para <br></br>explorar el contenido
+            exclusivo:{" "}
             <HiOutlineInformationCircle className="stroke-slate-500 w-5 h-5 inline-block" />
           </p>
-          <div className="flex justify-center flex-col gap-2">
-            <input
-            placeholder="____________"
-              id="codeValidate"
-              name="codeValidate"
-              value={codeValidate}
-              onChange={handleChangeTextBox}
-              className="p-2 rounded-l-md text-center text-2xl tracking-wider"
-            ></input>
-            <input
+          <form
+            onSubmit={(e) => {
+              HandleBtnCode(e);
+            }}
+          >
+            <div className="flex justify-center flex-col gap-2">
+              <input
+                placeholder="____________"
+                id="codeValidate"
+                name="codeValidate"
+                value={codeValidate}
+                onChange={handleChangeTextBox}
+                required
+                className="p-2 rounded-l-md text-center text-2xl tracking-wider"
+              ></input>
+              <input
                 type="email"
                 placeholder="Correo Electrónico"
                 id="userEmail"
                 name="userEmail"
                 value={userEmail}
                 onChange={handleChangeTextBoxEmail}
+                required
                 className="p-2 rounded-md border-white"
               ></input>
-            
 
-            <button
-              onClick={HandleBtnCode}
-              className="rounded-2xl bg-green3 p-2 hover:bg-slate-600 text-white text-2xl font-bold flex justify-center items-center gap-2"
-            >
-              ENVIAR
-              <HiPlay className="fill-white w-6 h-8 transition-all duration-500" />
-
-            </button>
-          </div>
+              <button
+                onClick={HandleBtnCode}
+                className="rounded-2xl bg-green3 p-2 hover:bg-slate-600 text-white text-2xl font-bold flex justify-center items-center gap-2"
+              >
+                ENVIAR
+                <HiPlay className="fill-white w-6 h-8 transition-all duration-500" />
+              </button>
+            </div>
+          </form>
           <div>
             <h2>{stateCodeValidate}</h2>
           </div>

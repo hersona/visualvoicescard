@@ -3,12 +3,19 @@ import { client } from "./client";
 export const getCards = async () => {
 
     try{
-        return  client.getEntries({
-            content_type: "producto",
+        const responseProductosOpenmindTools = await client.getEntries({
+            content_type: "productoOpemindTools",
             locale : "es-CO"
         }).then(res => res.items);
         
-        //return entries;
+        const responseProducto = await client.getEntries({
+            content_type: "producto",
+            locale : "es-CO"
+        }).then(res => res.items);
+
+        const combinedData = [...responseProductosOpenmindTools, ...responseProducto];
+
+        return combinedData;
     } catch(error){
         console.log(error);
     }
