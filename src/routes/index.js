@@ -8,6 +8,7 @@ import Detail from '../views/Detail';
 import Welcome from '../views/Welcome';
 import Kits from '../views/Kits';
 import InfoKits from '../views/InfoKits';
+import Cards from '../views/Cards';
 
 
 
@@ -22,7 +23,8 @@ const RoutesComponent = () => (
    <Route path="/kits" element={<Kits />} />
    <Route path="/opencards" element={<Kits />} />
    <Route path="/opencards/infoKits/:kitId" element={<InfoKits />} />
-
+   <Route path="/disenocultura/:pathUrl" element={<Cards />} />
+   <Route path="/opencards/disenocultura/:pathUrl" element={<Cards />} />
 
   </Routes>
  </BrowserRouter>

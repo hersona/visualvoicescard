@@ -35,3 +35,17 @@ export const getCard = async (courseId) => {
         console.log(error);
     }
 };
+
+export const getCultureCard = async (pathUrl) => {
+
+    try{
+        return  client.getEntries(Object.assign({
+            content_type: 'cultureCards',
+            locale : "es-CO"
+        },{ 'fields.pathUrl': pathUrl }))
+        .then(res => res.items);
+
+    } catch(error){
+        console.log(error);
+    }
+};
