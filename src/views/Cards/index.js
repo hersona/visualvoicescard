@@ -55,7 +55,7 @@ const Cards = () => {
       <div className="lg:max-w-4xl lg:bg-white lg:p-7 lg:rounded-2xl lg:shadow-xl m-auto lg:relative">
         <Header onHandleChangeSearch={handleChangeSearch} />
 
-        <div className="w-full grid gap-4 p-3 md:px-20 lg:px-10 justify-center grid-cols-[repeat(auto-fill,_minmax(min(100%,_120px),_1fr))]">
+        <div>
           {renderContent()}
         </div>
         <Footer />
