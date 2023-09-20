@@ -53,7 +53,7 @@ const Cards = () => {
   return (
     <div className="lg:bg-slate-600 lg:py-10">
       <div className="lg:max-w-4xl lg:bg-white lg:p-7 lg:rounded-2xl lg:shadow-xl m-auto lg:relative">
-        <Header onHandleChangeSearch={handleChangeSearch} />
+        <Header onHandleChangeSearch={handleChangeSearch} showSearchBox={false} />
 
         <div>
           {renderContent()}
